@@ -1,36 +1,44 @@
-package com.example.notesappbackend;
+package com.example.notesappbackend.web;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
+/**
+ * Ocean Professional: Lightweight public endpoints for root, docs, health and info.
+ * These endpoints are intentionally simple and unauthenticated.
+ */
 @RestController
-@Tag(name = "Hello Controller", description = "Basic endpoints for notesappbackend")
+@Tag(name = "Meta", description = "Meta endpoints for root, docs, health and info")
 public class HelloController {
-    
+
+    // PUBLIC_INTERFACE
     @GetMapping("/")
-    @Operation(summary = "Welcome endpoint", description = "Returns a welcome message")
+    @Operation(summary = "Welcome", description = "Returns a friendly welcome message.")
     public String hello() {
-        return "Hello, Spring Boot! Welcome to notesappbackend";
+        return "Welcome to Notes API - Ocean Professional";
     }
-    
+
+    // PUBLIC_INTERFACE
     @GetMapping("/docs")
-    @Operation(summary = "API Documentation", description = "Redirects to Swagger UI")
+    @Operation(summary = "API docs", description = "Redirects to Swagger UI.")
     public RedirectView docs() {
         return new RedirectView("/swagger-ui.html");
     }
-    
+
+    // PUBLIC_INTERFACE
     @GetMapping("/health")
-    @Operation(summary = "Health check", description = "Returns application health status")
+    @Operation(summary = "Health", description = "Simple health status probe.")
     public String health() {
         return "OK";
     }
-    
+
+    // PUBLIC_INTERFACE
     @GetMapping("/api/info")
-    @Operation(summary = "Application info", description = "Returns application information")
+    @Operation(summary = "Info", description = "Basic application info.")
     public String info() {
-        return "Spring Boot Application: notesappbackend";
+        return "Notes API (Spring Boot)";
     }
-} 
+}
